@@ -1,0 +1,12 @@
+.App {
+  background-color: #0c1d26;
+}
+
+.container {
+  width: 100vw;
+  min-height: auto;
+  background-image: url("./Images/background_main.jpg");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+}
