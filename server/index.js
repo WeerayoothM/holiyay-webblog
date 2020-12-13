@@ -1,5 +1,5 @@
 require('dotenv').config();
-require("./config/passport");
+require("./middlewares/passport");
 
 //* use mongoose to connect database
 const mongoose = require("mongoose");
