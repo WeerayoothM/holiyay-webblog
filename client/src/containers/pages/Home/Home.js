@@ -1,12 +1,137 @@
 import React from 'react';
 import './Home.css'
+import { Badge, Box, Container, Icon } from "@chakra-ui/react"
+import { StarIcon, ArrowDownIcon, MinusIcon } from '@chakra-ui/icons'
 
 function Home() {
     return (
-        <div className="container" >
-            {/* <img src={bg} style={{ width: '100vw' }} /> */}
-            <div style={{ height: '2000px', width: '100%' }}>
-            </div>
+        <div className="home-container" centerContent >
+            <Container pt="82px" maxW="100%" >
+                <Box width="100%" height="auto" overflow="hidden" style={{ display: 'flex', justifyContent: 'center', margin: '0' }}>
+                    <Box p="6">
+                        <Box d="flex" alignItems="baseline">
+                            <Box
+                                color="#fbdb48"
+                                fontWeight="semibold"
+                                letterSpacing="wide"
+                                fontSize="sm"
+                                textTransform="uppercase"
+                            >
+                                {/* <MinusIcon fontSize="4em" style={{ border: '1px solid white', width: '50px', height: '20px', padding: '0' }} /> */}
+                                <div style={{ display: 'inline-block', width: '35px', height: '5px', borderTop: '3px solid #fbdb48' }}>
+
+                                </div>
+                                &nbsp;A HIKING GUIDE
+                            </Box>
+                        </Box>
+
+
+                        <Box
+                            mt="2"
+                            mb="2"
+                            fontWeight="semibold"
+                            as="h1"
+                            color="white"
+                            lineHeight="tight"
+                            isTruncated
+                            style={{ fontSize: "6vw" }}
+                        >
+                            LET'S WANDER <br /> WHERE THE WIFI IS WEAK
+                        </Box>
+
+                        <Box color="white" fontSize="lg">
+                            scroll down <ArrowDownIcon w={5} h={6} color="white" />
+                        </Box>
+
+                    </Box>
+                </Box>
+
+            </Container>
+            {/* <div style={{ height: '100px', width: 'auto' }}>
+            </div> */}
+            <Container pt="82px" maxW="100%" >
+                <Box width="100%" height="auto" overflow="hidden" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: '0' }}>
+                    <Box p="6">
+                        <Box d="flex" alignItems="baseline">
+                            <Box
+                                color="#fbdb48"
+                                fontWeight="semibold"
+                                letterSpacing="wide"
+                                fontSize="sm"
+                                textTransform="uppercase"
+                            >
+                                {/* <MinusIcon fontSize="4em" style={{ border: '1px solid white', width: '50px', height: '20px', padding: '0' }} /> */}
+                                <div style={{ display: 'inline-block', width: '35px', height: '5px', borderTop: '3px solid #fbdb48' }}>
+
+                                </div>
+                                &nbsp;A HIKING GUIDE
+                            </Box>
+                        </Box>
+
+
+                        <Box
+                            mt="2"
+                            mb="2"
+                            fontWeight="semibold"
+                            as="h1"
+                            color="white"
+                            lineHeight="tight"
+                            isTruncated
+                            style={{ fontSize: "6vw" }}
+                        >
+                            LET'S WANDER <br /> WHERE THE WIFI IS WEAK
+                        </Box>
+
+                        <Box color="white" fontSize="lg">
+                            scroll down <ArrowDownIcon w={5} h={6} color="white" />
+                        </Box>
+
+                    </Box>
+                </Box>
+
+            </Container>
+            <Container pt="82px" maxW="100%" >
+                <Box width="100%" height="auto" overflow="hidden" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '0' }}>
+                    <Box p="6">
+                        <Box d="flex" alignItems="baseline">
+                            <Box
+                                color="#fbdb48"
+                                fontWeight="semibold"
+                                letterSpacing="wide"
+                                fontSize="sm"
+                                textTransform="uppercase"
+                            >
+                                {/* <MinusIcon fontSize="4em" style={{ border: '1px solid white', width: '50px', height: '20px', padding: '0' }} /> */}
+                                <div style={{ display: 'inline-block', width: '35px', height: '5px', borderTop: '3px solid #fbdb48' }}>
+
+                                </div>
+                                &nbsp;A HIKING GUIDE
+                            </Box>
+                        </Box>
+
+
+                        <Box
+                            mt="2"
+                            mb="2"
+                            fontWeight="semibold"
+                            as="h1"
+                            color="white"
+                            lineHeight="tight"
+                            isTruncated
+                            style={{ fontSize: "6vw" }}
+                        >
+                            LET'S WANDER <br /> WHERE THE WIFI IS WEAK
+                        </Box>
+
+                        <Box color="white" fontSize="lg">
+                            scroll down <ArrowDownIcon w={5} h={6} color="white" />
+                        </Box>
+
+                    </Box>
+                </Box>
+
+            </Container>
+
         </div>
     )
 }

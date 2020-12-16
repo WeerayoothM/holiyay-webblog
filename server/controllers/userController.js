@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const sha256 = require("js-sha256");
 const jwt = require("jwt-then");
 const bcrypt = require("bcrypt");
 

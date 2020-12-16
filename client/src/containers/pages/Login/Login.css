@@ -1,0 +1,16 @@
+.login-container {
+  background-image: url("../../../Images/thumb-1920-959645.jpg");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  min-height: 500px;
+  padding-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linktext {
+  color: #35ffab;
+}
