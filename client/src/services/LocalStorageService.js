@@ -26,10 +26,12 @@ const getUserProfile = () => {
     return { id: null }
 }
 
-export default {
+const localStorageService = {
     getToken,
     setToken,
     removeToken,
     getRole,
     getUserProfile
-};
+}
+
+export default localStorageService;

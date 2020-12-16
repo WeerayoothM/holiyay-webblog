@@ -5,5 +5,4 @@
 
 ::placeholder {
   color: hsl(0, 0%, 90%) !important;
-  opacity: 1; /* Firefox */
 }

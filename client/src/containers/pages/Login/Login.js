@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import './Login.css'
+import axios from '../../../config/axios'
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
@@ -14,23 +15,31 @@ const LoginSchema = Yup.object().shape({
 });
 function Login() {
     const { register, handleSubmit, errors } = useForm(
-        //     {
-        //     resolver: yupResolver(LoginSchema)
-        // }
+        {
+            resolver: yupResolver(LoginSchema)
+        }
     );
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        axios.post('/users/login', data)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    };
 
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div data-aos='fade-right' className="formgroup">
                     <label>Username</label>
-                    <input type="text" name="username" style={{ padding: '0 10px' }} />
+                    <input type="text" name="username" ref={register} style={{ padding: '0 10px' }} />
                     {errors.username && <p>{errors.username.message}</p>}
                 </div>
                 <div data-aos='fade-right' className="formgroup">
                     <label>Password</label>
-                    <input type="text" name="password" style={{ padding: '0 10px' }} />
+                    <input type="text" name="password" ref={register} style={{ padding: '0 10px' }} />
                     {errors.password && <p>{errors.password.message}</p>}
                 </div>
                 <div data-aos='fade-right' className="formgroup">

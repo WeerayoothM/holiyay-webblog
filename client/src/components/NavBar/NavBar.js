@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Spacer, Box, InputGroup, InputRightAddon, Input, InputLeftAddon } from "@chakra-ui/react"
+import { Flex, Spacer, Box, InputGroup, InputRightAddon, Input, } from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
 import UserContext from '../../context/userContext'
 import { useContext } from 'react';
@@ -7,11 +7,10 @@ import { useContext } from 'react';
 function NavBar() {
     const { role } = useContext(UserContext);
     return (
-        <div style={{ position: 'absolute', width: '100%' }}>
-
+        <div style={{ position: 'absolute', zIndex: '2', width: '100%' }}>
             <Flex >
                 <Box p="4" m="4" mt="0" >
-                    <span style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>TravelBlog</span>
+                    <span style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}><Link to="/">TravelBlog</Link></span>
                 </Box>
                 <Box mt="5">
                     <InputGroup >

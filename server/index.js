@@ -32,7 +32,6 @@ app.use("/users", require("./routes/userRoute"));
 app.use("/posts", require("./routes/postRoute"));
 app.use("/comment", require("./routes/commentRoute"));
 
-
 app.listen(process.env.PORT, () => {
     console.log("Server listening on port " + process.env.PORT);
 });
