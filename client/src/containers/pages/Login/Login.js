@@ -2,10 +2,13 @@ import React from 'react'
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import './Login.css'
 import axios from '../../../config/axios'
+import { useContext } from 'react';
+import UserContext from '../../../context/userContext';
+import localStorageService from '../../../services/LocalStorageService';
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
@@ -14,6 +17,8 @@ const LoginSchema = Yup.object().shape({
         .required()
 });
 function Login() {
+    const { setRole } = useContext(UserContext);
+    const history = useHistory();
     const { register, handleSubmit, errors } = useForm(
         {
             resolver: yupResolver(LoginSchema)
@@ -23,6 +28,9 @@ function Login() {
         axios.post('/users/login', data)
             .then(res => {
                 console.log(res)
+                localStorageService.setToken(res.data.token);
+                history.push("/");
+                setRole("USER");
             })
             .catch(err => {
                 console.log(err)
@@ -39,7 +47,7 @@ function Login() {
                 </div>
                 <div data-aos='fade-right' className="formgroup">
                     <label>Password</label>
-                    <input type="text" name="password" ref={register} style={{ padding: '0 10px' }} />
+                    <input type="password" name="password" ref={register} style={{ padding: '0 10px' }} />
                     {errors.password && <p>{errors.password.message}</p>}
                 </div>
                 <div data-aos='fade-right' className="formgroup">

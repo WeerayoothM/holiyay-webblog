@@ -4,6 +4,7 @@ import Profile from "../containers/pages/Profile/Profile";
 import Login from "../containers/pages/Login/Login";
 import Register from "../containers/pages/Register/Register";
 import Home from "../containers/pages/Home/Home";
+import CreateBlog from '../containers/pages/CreateBlog/CreateBlog';
 
 
 const components = {
@@ -15,8 +16,12 @@ const components = {
         path: '/feed',
         page: Feed,
     },
+    createblog: {
+        path: '/createpost',
+        page: CreateBlog
+    },
     blog: {
-        path: '/blog/:id',
+        path: '/blog/:postId',
         page: Blog
     },
     login: {
@@ -37,13 +42,16 @@ const roles = {
     GUEST: [
         components.home,
         components.login,
-        components.register
+        components.register,
+        components.feed,
+        components.blog,
     ],
     USER: [
         components.home,
-        components.feed,
         components.profile,
+        components.feed,
         components.blog,
+        components.createblog
     ]
 };
 

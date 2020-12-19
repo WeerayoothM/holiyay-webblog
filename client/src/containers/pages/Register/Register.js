@@ -5,6 +5,7 @@ import * as Yup from "yup";
 
 import './Register.css';
 import axios from '../../../config/axios'
+import { useHistory } from 'react-router-dom';
 
 
 const SignupSchema = Yup.object().shape({
@@ -24,6 +25,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 function Register() {
+    const history = useHistory()
 
     const { register, handleSubmit, errors, } = useForm(
         {
@@ -31,10 +33,10 @@ function Register() {
         }
     );
     const onSubmit = (data) => {
-        console.log(data)
         axios.post('/users/register', { ...data, imageUrl: '' })
             .then(res => {
-                console.log(res)
+                console.log(res);
+                history.push('/login');
             })
             .catch(err => {
                 console.log(err)
@@ -52,42 +54,42 @@ function Register() {
                     <div data-aos-once="true" data-aos-delay="20" data-aos='fade-right' className="formgroup">
                         <label>Username</label>
                         <input type="text" name="username" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.username && <p>{errors.username.message}</p>}
+                        {errors.username && <p className="error-message">{errors.username.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="20" data-aos='fade-right' className="formgroup">
                         <label>First Name</label>
                         <input type="text" name="firstName" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.firstName && <p>{errors.firstName.message}</p>}
+                        {errors.firstName && <p className="error-message">{errors.firstName.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="40" data-aos='fade-right' className="formgroup">
                         <label>Last Name</label>
                         <input type="text" name="lastName" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.lastName && <p>{errors.lastName.message}</p>}
+                        {errors.lastName && <p className="error-message">{errors.lastName.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="40" data-aos='fade-right' className="formgroup">
                         <label>Email</label>
                         <input type="text" name="email" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.email && <p>{errors.email.message}</p>}
+                        {errors.email && <p className="error-message">{errors.email.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="40" data-aos='fade-right' className="formgroup">
                         <label>Password</label>
                         <input type="password" name="password" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.password && <p>{errors.password.message}</p>}
+                        {errors.password && <p className="error-message">{errors.password.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="40" data-aos='fade-right' className="formgroup">
                         <label>Confirm Password</label>
                         <input type="password" name="confirmPassword" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+                        {errors.confirmPassword && <p className="error-message">{errors.confirmPassword.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="60" data-aos='fade-right' data-aos-offset="100" className="formgroup">
                         <label>Mobile</label>
                         <input type="text" name="mobile" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.mobile && <p>{errors.mobile.message}</p>}
+                        {errors.mobile && <p className="error-message">{errors.mobile.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="80" data-aos='fade-right' className="formgroup">
                         <label>Description</label>
                         <input type="text" name="description" ref={register} style={{ padding: '0 10px' }} />
-                        {errors.description && <p>{errors.description.message}</p>}
+                        {errors.description && <p className="error-message">{errors.description.message}</p>}
                     </div>
                     <div data-aos-once="true" data-aos-delay="100" data-aos='fade-right' className="formgroup btn-submit">
                         <input type="submit" value="Register" />

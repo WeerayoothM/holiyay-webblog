@@ -4,7 +4,7 @@
   background-image: url("../../../Images/Untitled-1-Recovered2.jpg");
   object-fit: cover;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 .header-container {

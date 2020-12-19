@@ -15,11 +15,11 @@ form {
   width: 400px;
 }
 
-p {
+p.error-message {
   color: #ff3b80;
 }
 
-p::before {
+p.error-message::before {
   display: inline;
   content: "⚠ ";
 }

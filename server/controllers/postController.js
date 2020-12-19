@@ -19,12 +19,14 @@ exports.createPost = async (req, res) => {
     try {
         const { title, content, category } = req.body;
         console.log(title, content, category)
+        console.log(req.user.id)
         const newPost = await Post.create({
             author: req.user.id,
             title,
             content,
             category
         })
+        console.log(newPost)
         res.status(201).json({ newPost });
     } catch (err) {
         res.status(500).json({ message: err.message });

@@ -12,7 +12,10 @@ const postSchema = new mongoose.Schema(
             required: true,
             ref: "User",
         },
-        content: [{ type: String, required: true, }],
+        content: [{
+            content: String,
+            contentType: String
+        }],
         likes: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" }],
         hates: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" }],
         hashtags: [{ type: String }],

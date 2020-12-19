@@ -1,0 +1,12 @@
+.feed-container {
+  min-height: 100vh;
+  margin: 0 auto;
+  /* padding: 80px 80px; */
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  justify-content: flex-start;
+  align-items: center;
+  color: #e7ac3d;
+}
