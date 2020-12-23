@@ -124,3 +124,17 @@ input {
   padding: 10px 15px;
   font-size: 14px;
 }
+
+.upload-img {
+  height: 150px;
+  width: 300px;
+  outline: none;
+  background-color: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}

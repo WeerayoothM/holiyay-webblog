@@ -64,7 +64,7 @@ exports.getUser = async (req, res) => {
 
         if (!user) return res.status(400).json({ message: "Not found User" });
 
-        res.status(200).json({ authorName: user.username });
+        res.status(200).json({ authorName: user.username, authorProfile: user.imageUrl });
 
     } catch (err) {
         res.status(500).json({ message: err.message })

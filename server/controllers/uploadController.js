@@ -17,7 +17,7 @@ const uploadImage = async (req, res) => {
         res.status(201).json({ url: uploadResponse.url });
     } catch (err) {
         console.error("error", err);
-        res.status(500).json({ err: "Something went wrong" });
+        res.status(500).json({ message: err.message });
     }
 };
 

@@ -1,53 +1,69 @@
 import axios from '../../../config/axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Blog.css'
 import { useParams } from 'react-router-dom';
-
-const mockData = [{
-    type: "image",
-    content: "https://previews.123rf.com/images/dzmitrock/dzmitrock1807/dzmitrock180700007/104573604-tourists-with-hiking-backpacks-on-beautiful-mountain-landscape-background-climbers-hike-to-mounts-gr.jpg"
-}, {
-    type: "text",
-    content: "ieie"
-}
-]
+import localStorageService from '../../../services/LocalStorageService'
+import PostSection from '../../../components/PostSection/PostSection';
+import CommentSection from '../../../components/CommentSection/CommentSection';
+import CreateComment from '../../../components/CreateComment/CreateComment';
+import { Box } from '@chakra-ui/react';
+import UserContext from '../../../context/userContext';
 
 function Blog() {
     const { postId } = useParams();
-    const [title, setTitle] = useState("");
-    const [contentList, setContentList] = useState([]);
-    useEffect(() => {
+    const [postData, setPostData] = useState([]);
+    const [authorName, setAuthorName] = useState(null);
+    const [authorProfile, setAuthorProfile] = useState(null);
+    const [isLike, setIsLike] = useState(null)
+    const myProfile = localStorageService.getUserProfile()
+    const { role } = useContext(UserContext)
+
+    const fetchPostData = () => {
         axios.get(`/posts/${postId}`)
             .then(res => {
-                console.log(res.data.content)
-                setContentList(res.data.content)
-                setTitle(res.data.title)
+                setPostData(res.data)
+                console.log(res.data.likes.includes(myProfile.id))
+                setIsLike(res.data.likes.includes(myProfile.id))
+                axios.get(`/users/${res.data.author}`)
+                    .then(res => {
+                        setAuthorName(res.data.authorName)
+                        setAuthorProfile(res.data.authorProfile)
+                    }).catch(err => console.log(err))
             }).catch(err => {
                 console.log(err)
             })
+    }
+    useEffect(() => {
+        fetchPostData()
     }, [])
+
+
     return (
         <div className="blog-container">
-            <div className="post-container">
-                <h style={{ color: '#e7ac3d', fontSize: '3rem', margin: '0 auto', lineHeight: '3.5rem' }} >{title}</h>
-                {contentList.map((item, idx) => {
-                    switch (item.contentType) {
-                        case "image":
-                            return (
-                                <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '20px 0' }} >
-                                    <img src={item.content} style={{ width: '100%' }} />
-                                </div>
-                            )
-                        case "text":
-                            return (
-                                <div style={{ color: 'white', width: '100%', margin: '20px 0', whiteSpace: 'pre-line', wordBreak: 'break-word' }} >{item.content}</div>
-                            )
-                        default:
-                            return null
-                    }
-                })}
-            </div>
+            <PostSection postId={postId} postData={postData} authorName={authorName} authorProfile={authorProfile} fetchPostData={fetchPostData} isLike={isLike} />
+            <Box d="flex" alignItems="baseline" style={{ width: '60%', margin: '20px auto' }} >
+                <div
+                    style={{ color: "#fbdb48", display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
+                >
+                    {/* <MinusIcon fontSize="4em" style={{ border: '1px solid white', width: '50px', height: '20px', padding: '0' }} /> */}
+                    <div style={{ display: 'flex', justifyContent: 'center', flexGrow: '2', width: '100px', height: '5px', borderTop: '2px solid rgba(233, 229, 246, 0.5)' }}>
+
+                    </div>
+                    <div style={{ display: 'flex', padding: ' 0 5px', justifyContent: 'center', color: 'rgba(233, 229, 246, 0.5)' }} >
+                        &nbsp;Comments
+                    </div>
+                    <div style={{ display: 'flex', flexGrow: '2', width: '100px', height: '5px', borderTop: '2px solid rgba(233, 229, 246, 0.5)' }}>
+
+                    </div>
+                </div>
+            </Box>
+            {postData?.comments?.map((item, idx) => {
+                return (
+                    <CommentSection key={idx} idx={idx} item={item} content={item.content} postId={postId} postData={postData} authorName={authorName} authorProfile={authorProfile} fetchPostData={fetchPostData} isLike={isLike} />
+                )
+            })}
+
+            { role === "USER" && <CreateComment postId={postId} postData={postData} authorName={authorName} authorProfile={authorProfile} fetchPostData={fetchPostData} isLike={isLike} />}
 
         </div>
     )

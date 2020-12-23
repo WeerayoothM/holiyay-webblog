@@ -1,6 +1,5 @@
 const Post = require('../models/Post');
 
-
 exports.createComment = async (req, res) => {
     const { postId } = req.params;
     const { content } = req.body;

@@ -28,7 +28,7 @@ axios.interceptors.response.use(
     (err) => {
         if (err.response?.status === 401) {
             LocalStorageService.removeToken();
-            window.location.reload();
+            window.location.href = 'http://localhost:3000'
 
             return Promise.reject(err);
         }

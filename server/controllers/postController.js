@@ -33,6 +33,7 @@ exports.createPost = async (req, res) => {
     }
 }
 
+
 exports.updatePost = async (req, res) => {
     try {
         const { postId } = req.params;

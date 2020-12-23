@@ -3,26 +3,23 @@ import React from 'react';
 import { useState } from 'react';
 import CreateBlogItem from '../../../components/CreateBlogItem./CreateBlogItem';
 import './CreateBlog.css'
+import { useHistory } from 'react-router-dom';
 
-
-const mockData = [{
-    contentType: "image",
-    content: "https://previews.123rf.com/images/dzmitrock/dzmitrock1807/dzmitrock180700007/104573604-tourists-with-hiking-backpacks-on-beautiful-mountain-landscape-background-climbers-hike-to-mounts-gr.jpg"
-}, {
-    contentType: "text",
-    content: ""
-}
-]
 function CreateBlog() {
     const [formInput, setFormInput] = useState([]);
     const [titleInput, setTitleInput] = useState("");
-    const [category, setCategory] = useState("adventure")
+    const [category, setCategory] = useState("Adventure");
+    const history = useHistory();
 
     const addImage = (e) => {
         setFormInput([...formInput, { contentType: e.target.value, content: "" }])
     }
     const addText = (e) => {
         setFormInput([...formInput, { contentType: e.target.value, content: "" }])
+    }
+
+    const handleSelectCategory = (e) => {
+        setCategory(e.target.value)
     }
 
     const onSubmit = (e) => {
@@ -32,7 +29,7 @@ function CreateBlog() {
         )
         axios.post("/posts", { title: titleInput, content: formInput, category: category })
             .then(res => {
-                console.log(res)
+                history.push(`/blog/${res.data.newpost._id}`)
             })
             .catch(err => {
                 console.log(err)
@@ -41,9 +38,10 @@ function CreateBlog() {
 
     return (
         <div className="createblog-container">
-            <h1 style={{ color: 'white', fontSize: '3rem', margin: '0 auto' }} >Create a new blog</h1>
-            <div style={{ color: 'white' }} >
-                <input className="title-input" value={titleInput} onChange={(e) => setTitleInput(e.target.value)} style={{ color: '#000', padding: '0 10px' }} placeholder="Title..." />
+            <h1 style={{ color: 'white', fontSize: '3rem', margin: '0 auto', borderBottom: '1px solid rgba(256,256,256,0.5)', marginBottom: '20px' }} >Create a new Post</h1>
+            <div style={{ color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                <div style={{ width: '45px', borderRight: '1px solid rgba(256,256,256,0.5)', paddingRight: '10px', height: '50px', fontSize: '1.1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Title</div>
+                <input type="text" className="title-input" value={titleInput} onChange={(e) => setTitleInput(e.target.value)} placeholder="Title..." />
             </div>
             {formInput?.map((item, idx) => {
                 return (
@@ -54,8 +52,11 @@ function CreateBlog() {
                 <button value="image" onClick={addImage} style={{ color: 'white', backgroundColor: '#ff3b80', padding: '10px', margin: '10px' }} >Add image</button>
                 <button value="text" onClick={addText} style={{ color: 'white', backgroundColor: '#ff3b80', padding: '10px', margin: '10px' }}>Add text</button>
             </div>
-            <div>
-                <button type="submit" onClick={onSubmit} style={{ color: 'white', }} >Create</button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <div style={{ width: '50%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid rgba(256,256,256,0.5)', marginTop: '20px' }}>
+
+                    <button type="submit" onClick={onSubmit} style={{ color: 'white', marginTop: '20px' }} >Create</button>
+                </div>
             </div>
         </div>
     )

@@ -7,8 +7,10 @@ import { ChakraProvider } from "@chakra-ui/react"
 import { BrowserRouter } from 'react-router-dom';
 import { extendTheme } from "@chakra-ui/react";
 import AOS from 'aos';
+import 'antd/dist/antd.css';
+
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
+
 AOS.init();
 
 // 2. Extend the theme to include custom colors, fonts, etc
