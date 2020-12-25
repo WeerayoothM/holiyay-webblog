@@ -1,7 +1,7 @@
 import axios from '../../../config/axios';
 import React from 'react';
 import { useState } from 'react';
-import CreateBlogItem from '../../../components/CreateBlogItem./CreateBlogItem';
+import CreateBlogItem from '../../../components/CreateBlogItem/CreateBlogItem';
 import './CreateBlog.css'
 import { useHistory } from 'react-router-dom';
 
